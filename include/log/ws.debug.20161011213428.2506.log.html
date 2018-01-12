@@ -1,0 +1,38 @@
+<h2>Request</h2><pre>POST /avavoip_gate.php HTTP/1.0
+Host: soap.1161.my-online-check.com
+User-Agent: NuSOAP/0.9.5 (1.123)
+Content-Type: text/xml; charset=UTF-8
+SOAPAction: &quot;urn:AvaVoip#CallHistoryService.cdrLookup&quot;
+Content-Length: 863
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;SOAP-ENV:Envelope SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:SOAP-ENC=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; xmlns:tns=&quot;urn:AvaVoip&quot;&gt;&lt;SOAP-ENV:Header&gt;&lt;user xsi:type=&quot;xsd:string&quot;&gt;soap_external&lt;/user&gt;&lt;password xsi:type=&quot;xsd:string&quot;&gt;fe02d097ffa37983dccf75d11ac06aad&lt;/password&gt;&lt;/SOAP-ENV:Header&gt;&lt;SOAP-ENV:Body&gt;&lt;tns:CallHistoryService.cdrLookup xmlns:tns=&quot;urn:AvaVoip&quot;&gt;&lt;param xsi:type=&quot;tns:CriteriaCdrLookup&quot;&gt;&lt;AccountId xsi:type=&quot;xsd:int&quot;&gt;1868&lt;/AccountId&gt;&lt;StartTime xsi:type=&quot;xsd:string&quot;&gt;20161111&lt;/StartTime&gt;&lt;EndTime xsi:type=&quot;xsd:string&quot;&gt;20161112&lt;/EndTime&gt;&lt;/param&gt;&lt;/tns:CallHistoryService.cdrLookup&gt;&lt;/SOAP-ENV:Body&gt;&lt;/SOAP-ENV:Envelope&gt;</pre>
+				<h2>Response</h2><pre>HTTP/1.1 200 OK
+Date: Wed, 12 Oct 2016 02:34:28 GMT
+Server: Apache/2.2.15 (CentOS)
+X-Powered-By: PHP/5.3.19
+X-SOAP-Server: NuSOAP/0.7.3 (1.114)
+Content-Length: 706
+Connection: close
+Content-Type: text/xml; charset=ISO-8859-1
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:SOAP-ENC=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;&lt;SOAP-ENV:Body&gt;&lt;ns1:CallHistoryService.cdrLookupResponse xmlns:ns1=&quot;urn:AvaVoip&quot;&gt;&lt;return xsi:type=&quot;SOAP-ENC:Array&quot; SOAP-ENC:arrayType=&quot;:[1]&quot;&gt;&lt;item xsi:type=&quot;xsd:&quot;&gt;&lt;ErrorCode xsi:type=&quot;xsd:int&quot;&gt;0&lt;/ErrorCode&gt;&lt;ErrorMessage xsi:type=&quot;xsd:string&quot;&gt;&lt;/ErrorMessage&gt;&lt;Cdrs xsi:type=&quot;SOAP-ENC:Array&quot; SOAP-ENC:arrayType=&quot;xsd:anyType[0]&quot;&gt;&lt;/Cdrs&gt;&lt;/item&gt;&lt;/return&gt;&lt;/ns1:CallHistoryService.cdrLookupResponse&gt;&lt;/SOAP-ENV:Body&gt;&lt;/SOAP-ENV:Envelope&gt;</pre>
+				<h2>Debug</h2><pre>2016-10-11 21:34:18.063078 nusoap_client: ctor wsdl=1 timeout=0 response_timeout=30
+endpoint=string(58) &quot;http://soap.1161.my-online-check.com/avavoip_gate.php?wsdl&quot;
+2016-10-11 21:34:18.063121 nusoap_client: will use lazy evaluation of wsdl from http://soap.1161.my-online-check.com/avavoip_gate.php?wsdl
+</pre>
+				<h2>Result Client Call</h2><pre>Array
+(
+    [0] =&gt; Array
+        (
+            [ErrorCode] =&gt; 0
+            [ErrorMessage] =&gt; 
+            [Cdrs] =&gt; Array
+                (
+                )
+
+        )
+
+)
+</pre>
+
+						

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<!--
+Copyright (C) 2017 Aware, Inc - All Rights Reserved
+Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+-->
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fingerprint Component</title>
+</head>
+<body>
+	<div id="fingerprintComponent" class="panel panel-default panel-custom">
+	    Now scanning: <strong>Left Four Fingers</strong>
+	    <div>Capture Guidelines:</div>
+	</div>
+	<button id="useCardScannerButton" type="button" class="btn btn-default btn-ready">Use Card Scanner</button>
+	<button id="fingerPrintSaveButton" type="button" class="pull-right btn btn-primary">Save &amp Continue</button>
+</body>
+
+<script type="text/javascript">
+    $(document).on('click', '#fingerPrintSaveButton', function(){
+         webEnroll.moveToNextPage();
+    });
+    $(document).on('click', '#useCardScannerButton', function(){
+         webEnroll.fingerLiveToCardScan();
+    });
+</script>
+</html>

@@ -1,0 +1,242 @@
+﻿<!--
+Copyright (C) 2017 Aware, Inc - All Rights Reserved
+Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+-->
+
+<!-- Right Panel -->
+
+<p>
+    <span class="h3">Fingerprint Scan</span>
+    <a class="pull-right fingerprint-scan__exit-enrollment" href="#">
+        <span class="glyphicon glyphicon-log-out"></span>Exit Enrollment</a>
+</p>
+
+<div class="alert alert-success alert-dismissible collapse fingerprint-alert__connection-success" role="alert">
+    <button type="button" class="close" aria-label="Close"><span>&times;</span></button>
+    Live scan device is successfully connected.
+</div>
+
+<div class="alert alert-danger collapse clearfix fingerprint-alert fingerprint-alert__connection-failure" role="alert">
+    <span class="fingerprint-alert__connection-failure-text">Could not connect to BioComponentServer.</span>
+    <button type="button" class="btn btn-danger pull-right fingerprint-alert__connection-failure-reconnect">Reconnect</button>
+</div>
+
+<div class="alert alert-danger collapse clearfix fingerprint-alert fingerprint-alert__calibration-required" role="alert">
+    <span class="fingerprint-alert__calibration-required-text">Scanner needs to be calibrated.</span>
+    <button type="button" class="btn btn-danger pull-right fingerprint-alert__calibration-required-calibrate">Calibrate</button>
+</div>
+
+<div class="alert alert alert-success collapse fingerprint-alert fingerprint-alert__calibrating" role="alert">
+    Calibrating live scan device.
+    <div class="progress progress-striped active fingerprint-alert__progress-bar">
+        <div class="progress-bar"></div>
+    </div>
+</div>
+
+<div class="alert alert-danger collapse clearfix open-failure fingerprint-alert fingerprint-alert__open-failure" role="alert">
+    <span class="fingerprint-alert__open-failure-text">Could not open live scan device.</span>
+    <button type="button" class="btn btn-danger pull-right fingerprint-alert__open-failure-reopen">Reopen</button>
+</div>
+
+<div class="alert alert-danger collapse clearfix fingerprint-alert fingerprint-alert__preview-failure" role="alert">
+    <span>Error starting preview:<span class="fingerprint-alert__preview-failure-reason"></span></span>
+    <button type="button" class="btn btn-danger pull-right fingerprint-alert__preview-failure-restart">Restart preview</button>
+</div>
+
+<div class="alert alert-danger collapse clearfix fingerprint-alert fingerprint-alert__rescan" role="alert">
+    <span class="fingerprint-alert__rescan-text">Text describing reason for rescan</span>
+    <button type="button" class="btn btn-danger pull-right fingerprint-alert__rescan-rescan">Rescan</button>
+    <button type="button" class="btn btn-danger pull-right fingerprint-alert__second-button fingerprint-alert__rescan-accept">Accept</button>
+</div>
+
+<div class="alert alert alert-success collapse fingerprint-alert fingerprint-alert__connecting" role="alert">
+    Connecting to live scan device.
+    <div class="progress progress-striped active fingerprint-alert__progress-bar">
+        <div class="progress-bar"></div>
+    </div>
+</div>
+
+<div class="well fingerprint-scan">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="progress">
+                <div class="progress-bar fingerprint-scan__progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                     aria-valuemax="100">
+                    <span class="sr-only">0% Complete</span>
+                </div>
+            </div>
+            <div class="fingerprint-scan__capturing-label">Now Scanning: <span class="fingerprint-scan__capturing-text">None</span></div>
+            <h4>Capture Guidelines:</h4>
+            <p class="fingerprint-scan__capturing-guidelines"></p>
+        </div>
+        <div class="fingerprint-scan__footer">
+
+            <ul>
+                <li>
+                    <button class="fingerprint__calibrate fingerprint-capture__button--icon">
+                        <img class="fingerprint-scan__button--svg-image dial-svg" src="Common/images/dial.svg"/>
+                        Calibrate
+                    </button>
+                </li>
+                <li>
+                    <button class="fingerprint__manual-capture fingerprint-capture__button--icon">
+                        <img class="fingerprint-scan__button--svg-image shutter-svg" src="Common/images/shutter.svg"/>
+                        Capture Manually
+                    </button>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-7">
+
+            <!-- Digit Indicator Tooltip -->
+            <div class="position-relative">
+                <div class="fingerprint__digit-indicator-tooltip">
+                    <p>Use the Hand/Digit indicators to mark fingers as Amputated or Unable
+                        To Print.</p>
+                    <a href="#" class="fingerprint__digit-indicator-tooltip-close">
+                        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                            <title>Close</title><path d="M10.5 0L5.957 4.543 1.414 0 0 1.414l4.543 4.543L0 10.5l1.414 1.414 4.543-4.543 4.543 4.543 1.414-1.414-4.543-4.543 4.543-4.543z"></path><
+                        </svg>
+                        <span class="sr-only">
+                        Close Tool Tip
+                      </span>
+                    </a>
+                    <p class="fingerprint__digit-indicator-tooltip-disable">
+                        <a href="#" class="fingerprint__digit-indicator-tooltip-disable-link">Don't show this again</a>
+                    </p>
+                </div>
+
+                <!-- Buttons representing finger positions get populated via Javascript -->
+                <div class="fingerprint-scan__finger-button-container">
+                    <span class="fingerprint-scan__left-hand-buttons"></span>
+                    <span class="fingerprint-scan__right-hand-buttons pull-right"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Preview Image Area -->
+                <div class="col-md-12 fingerprint-preview">
+                    <div class="fingerprint-scan__preview-container">
+                        <img src="#" class="fingerprint-scan__preview-image collapse"/>
+                        <div class="fingerprint-scan__capture-guide">
+                            <img class="fingerprint-scan__capture-image" src="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Shown when capture is completed -->
+<div class="well capture-completed collapse">
+    <div class="row capture-status">
+        <div class="col-md-5">
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                     aria-valuemax="100" style="width: 100%;">
+                    <span class="sr-only">100% Complete</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <span class="pull-right"><b>All Fingers Successfully Scanned</b></span>
+        </div>
+    </div>
+    <h4>You can review the captured prints below and click Save &amp Continue once everything looks OK.</h4>
+</div>
+
+
+<div class="fingerprint__borderless-panel">
+    <button id="useCardScannerButton" type="button" class="btn fingerprint__use-card-scanner">Use Card Scanner</button>
+    <button class="fingerprint__save-and-continue pull-right btn btn-primary" type="button">Save &amp Continue</button>
+</div>
+
+<!-- Capture Images Table -->
+<div class="well">
+    <table class="table captureTable" id="captureTable">
+        <caption>Captured Images</caption>
+
+        <thead>
+        <tr>
+            <th>Digit(s)</th>
+            <th class="fingerprint-captured-images__quality-column">AFIQ (0-100)</th>
+            <th class="fingerprint-captured-images__quality-column">NFIQ (1-5)</th>
+            <th class="fingerprint-captured-images__options-column">Options</th>
+        </tr>
+        </thead>
+        <tr id="no-captures-text">
+            <td>No captures yet</td>
+        </tr>
+        <tbody>
+        <!-- When images are captured the image and metadata will be place here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Debugging Display -->
+<div class="debug-area">
+    <h4>Debugging Display:</h4>
+    <p>
+        <strong>Version:</strong> <span id="version"></span><br>
+        <strong>Status:</strong> <span id="status"></span><br>
+        <strong>Preview quality score:</strong> <span id="previewQualityScore"></span><br>
+        <strong>Auto capture Status:</strong> <span id="autoCaptureStatus"></span><br>
+        <strong>Sequence Errors:</strong> <span id="sequenceError"></span>
+    </p>
+
+    <div class="btn-group-horizontal">
+        <button id="connect" class="btn">Connect</button>
+        <button id="initialize" class="btn">Initialize</button>
+        <button id="capture" class="btn">Start Auto Capture</button>
+        <button id="markAsAmputated" class="btn">Mark as amputated</button>
+        <button id="unableToPrint" class="btn">Unable to print</button>
+        <button id="manualCapture" class="btn">Manual Capture</button>
+        <button id="endAutoCapture" class="btn">End Auto Capture</button>
+        <button id="close" class="btn">Close</button>
+        <button id="download" class="btn">Download Image</button>
+        <button id="shutdown" class="btn">Shutdown Server</button>
+    </div>
+</div>
+
+<!-- Impression Viewer -->
+<div class="modal fade fingerprint-impression-viewer" tabindex="-1" role="dialog" data-keyboard="false"
+     data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <!-- No title for now
+                    <h3 class="modal-title">Impression </h3> -->
+            </div>
+            <div class="modal-body">
+                <div id="impression-viewer__carousel" class="carousel slide" data-interval="false">
+
+                    <!-- Content goes under this div -->
+                    <div class="carousel-inner impression-viewer__list" role="listbox">
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#impression-viewer__carousel" role="button"
+                       data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#impression-viewer__carousel" role="button"
+                       data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

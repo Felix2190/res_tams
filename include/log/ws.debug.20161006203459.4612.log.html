@@ -1,0 +1,35 @@
+<h2>Request</h2><pre>POST /avavoip_gate.php HTTP/1.0
+Host: soap.1161.my-online-check.com
+User-Agent: NuSOAP/0.9.5 (1.123)
+Content-Type: text/xml; charset=UTF-8
+SOAPAction: &quot;urn:AvaVoip#AccountService.login&quot;
+Content-Length: 853
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;SOAP-ENV:Envelope SOAP-ENV:encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:SOAP-ENC=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; xmlns:tns=&quot;urn:AvaVoip&quot;&gt;&lt;SOAP-ENV:Header&gt;&lt;user xsi:type=&quot;xsd:string&quot;&gt;soap_external&lt;/user&gt;&lt;password xsi:type=&quot;xsd:string&quot;&gt;fe02d097ffa37983dccf75d11ac06aad&lt;/password&gt;&lt;/SOAP-ENV:Header&gt;&lt;SOAP-ENV:Body&gt;&lt;tns:AccountService.login xmlns:tns=&quot;urn:AvaVoip&quot;&gt;&lt;param xsi:type=&quot;tns:CriteriaAccountLogin&quot;&gt;&lt;AccountUsername xsi:type=&quot;xsd:string&quot;&gt;focim&lt;/AccountUsername&gt;&lt;AccountPassword xsi:type=&quot;xsd:string&quot;&gt;707fdfc0e387b5eadd4793954979af74&lt;/AccountPassword&gt;&lt;/param&gt;&lt;/tns:AccountService.login&gt;&lt;/SOAP-ENV:Body&gt;&lt;/SOAP-ENV:Envelope&gt;</pre>
+				<h2>Response</h2><pre>HTTP/1.1 200 OK
+Date: Fri, 07 Oct 2016 01:34:59 GMT
+Server: Apache/2.2.15 (CentOS)
+X-Powered-By: PHP/5.3.19
+X-SOAP-Server: NuSOAP/0.7.3 (1.114)
+Content-Length: 661
+Connection: close
+Content-Type: text/xml; charset=ISO-8859-1
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;&lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:SOAP-ENC=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;&gt;&lt;SOAP-ENV:Body&gt;&lt;ns1:AccountService.loginResponse xmlns:ns1=&quot;urn:AvaVoip&quot;&gt;&lt;return xsi:type=&quot;SOAP-ENC:Array&quot; SOAP-ENC:arrayType=&quot;:[1]&quot;&gt;&lt;item xsi:type=&quot;xsd:&quot;&gt;&lt;ErrorCode xsi:type=&quot;xsd:int&quot;&gt;0&lt;/ErrorCode&gt;&lt;ErrorMessage xsi:type=&quot;xsd:string&quot;&gt;&lt;/ErrorMessage&gt;&lt;AccountId xsi:type=&quot;xsd:int&quot;&gt;1868&lt;/AccountId&gt;&lt;/item&gt;&lt;/return&gt;&lt;/ns1:AccountService.loginResponse&gt;&lt;/SOAP-ENV:Body&gt;&lt;/SOAP-ENV:Envelope&gt;</pre>
+				<h2>Debug</h2><pre>2016-10-06 20:34:49.304481 nusoap_client: ctor wsdl=1 timeout=0 response_timeout=30
+endpoint=string(58) &quot;http://soap.1161.my-online-check.com/avavoip_gate.php?wsdl&quot;
+2016-10-06 20:34:49.304508 nusoap_client: will use lazy evaluation of wsdl from http://soap.1161.my-online-check.com/avavoip_gate.php?wsdl
+</pre>
+				<h2>Result Client Call</h2><pre>Array
+(
+    [0] =&gt; Array
+        (
+            [ErrorCode] =&gt; 0
+            [ErrorMessage] =&gt; 
+            [AccountId] =&gt; 1868
+        )
+
+)
+</pre>
+
+						

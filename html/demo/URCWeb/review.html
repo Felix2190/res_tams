@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<!--
+Copyright (C) 2017 Aware, Inc - All Rights Reserved
+Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+-->
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Review</title>
+</head>
+<body>
+    <div id="review" class="panel panel-default panel-custom">
+        
+        <div id="printPreviewDialog" class="modal" tabindex="-1" role="dialog" style="overflow-y: visible; padding-top: 1%;" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Print Preview Images</h3>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#front">Front</a></li>
+                            <li><a data-toggle="tab" href="#back">Back</a></li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            <div id="front" class="tab-pane fade in active">
+                                <img id="preview_front_image" class="center-block review__print-preview">
+                            </div>
+                            <div id="back" class="tab-pane fade">
+                                <img id="preview_back_image" class="center-block review__print-preview">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="previewCloseButton" class="btn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="progressDialog" class="modal" tabindex="-1" role="dialog" style="overflow-y: visible; padding-top: 15%;">
+            <div class="modal-dialog modal-m">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 style="margin: 0;">Generating Preview Images, please wait...</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="progress progress-striped active" style="margin-bottom: 0;">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <span class="page-header">Review</span>
+        <div class="panel-body row">
+            <div class="col-md-8">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <h5 style="font-weight: bold;">Biographical Information</h5>
+                        </td>
+                        <td>
+                            <a id="biographicEdit" class="pull-right" href="#"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="review__biographicInfo" id="biographicReview">
+                    <span id="name"></span><br>
+                    <span id="born"></span><br>
+                    <span id="app1"></span><br>
+                    <span id="app2"></span><br>
+                    <span id="addi"></span><br>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <h5 style="font-weight: bold;">Face Capture</h5>
+                        </td>
+                        <td>
+                            <a id="faceEdit" class="pull-right" href="#"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                        </td>
+                    </tr>
+                </table>
+                <img id="reviewFaceDisplay" class="img-responsive center-block img-rounded"/>
+            </div>
+        </div>
+        <div class="panel-body row">
+            <div class="col-md-12">
+
+                <p>
+                    <span class="h5" style="font-weight: bold;">Fingerprint Scans</span>
+                    <a class="pull-right" id="fingerprintEdit" href="#"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                </p>
+
+                <ul class="review__fingerprint-container">
+                    <li class="review__fingerprint_row">
+                        <ul class="review-page__plains">
+                        </ul>
+                    </li>
+                    <li class="review__fingerprint-row">
+                        <ul class="review-page__left-prints" >
+                        </ul>
+                    </li>
+                    <li class="review__fingerprint-row">
+                        <ul class="review-page__right-prints">
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="fpSourcePanel">
+        <label>Fingerprint Capture Source: </label>
+        <input class="review__fingerprint-source review__fingerprint-source--livescan"
+               type="radio" name="fpSource" value="LiveScan" checked="checked">LiveScan
+        <input class="review__fingerprint-source review__fingerprint-source--cardscan"
+               type="radio" name="fpSource" value="CardScan">CardScan<br>
+    </div><br><br>
+    <div>
+        <label>Please select a printer:</label>
+        <select id="printers"></select>
+    </div><br>
+    <div class="panel btn-toolbar">
+        <button id="getPrintPreviewButton" type="button" class="pull-left btn btn-primary">Preview</button>
+        <button id="printButton" type="button" class="pull-left btn btn-primary">Print</button>
+        <button id="downloadTransactionButton" type="button" class="pull-left btn btn-primary">Download EFT</button>
+        <button id="completeEnrollButton" type="button" class="pull-right btn btn-primary">Complete Enrollment</button>
+    </div><br><br>
+    
+    <div class="alert alert-success collapse transaction-alert__downloading" style="height: 80px" role="alert">Downloading transaction.
+    </div>
+
+    <div class="alert alert-success collapse transaction-alert__downloadSuccess" style="height: 80px" role="alert">Transaction downloaded successfully.
+    </div>
+
+    <div class="alert alert-danger transaction-alert__downloadFailure" style="height: 80px" role="alert">Could not create or download transaction.
+    </div>
+    
+    <div class="alert alert-success collapse printing-alert__sendToPrinterSucceed" style="height: 80px" role="alert">Documents sent to printer successfully.
+    </div>
+    
+    <div class="alert alert-danger collapse printing-alert__sendToPrinterFailed" style="height: 80px" role="alert">Failed to send documents to printer.
+    </div>
+    
+    <div id="statusPanel">
+        <br><h3>Status Messages</h3>
+        <label>Version:</label> <span id="nistCmptVersion"></span><br/>
+        <label>Status:</label> <span id="nistCmptStatus"></span>
+    </div>
+</body>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $(document).on('click', '#completeEnrollButton', function(){
+        var name = $('.review__biographicInfo').find('#name').text();
+        webEnroll.completeEnrollment(name);
+    });
+
+    // The edit links in review page,
+    // which navigate between review page and bio/finger/photo page
+    $(document).on('click', '#biographicEdit', function(){
+        $('#reviewPage').hide();
+        $('#biographicPage').show();
+        webEnroll.pageIndex = 0;
+        webEnroll.listIndex = 0;
+        webEnroll.editing = true;
+        webEnroll.setColor('badge-progress');
+    });
+
+    $(document).on('click', '#fingerprintEdit', function(){
+        $('#reviewPage').hide();
+        $('#fingerprintPage').show();
+        webEnroll.pageIndex = 1;
+        webEnroll.listIndex = 1;
+        // It informs card scan to keep the previous data
+        webEnroll.editing = true;
+        webEnroll.setColor('badge-progress');
+    });
+
+    $(document).on('click', '#faceEdit', function(){
+        $('#reviewPage').hide();
+        $('#photoPage').show();
+        webEnroll.pageIndex = 3;
+        webEnroll.listIndex = 2;
+        webEnroll.editing = true;
+        webEnroll.setColor('badge-progress');
+    });
+});  
+</script>
+</html>

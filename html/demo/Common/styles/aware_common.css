@@ -1,0 +1,100 @@
+/* Copyright (C) 2017 Aware, Inc - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ */
+
+a:link { color: #000000; text-decoration: none}
+
+.navbar-upper {
+    background-color:#7F9EB5;
+    color:#ffffff;
+    border-radius:0;
+}
+
+/* To center Aware logo */
+.navbar-brand {
+    padding-top: 10px;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-lower {
+    background-color:#0F4872;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-lower div a {
+    color:#ffffff;
+}
+
+.page-header {
+    font-size: x-large;
+}
+
+#exit {
+    font-size: medium;
+    color:#356589;
+}
+
+.panel-custom {
+    background-color: #F8F8F8;
+    border-color: #7F9EB5;
+    border-radius:0;
+}
+
+.alert {
+    border-radius:0;
+}
+
+.list-group li.list-item {
+    background-color: #F8F8F8;
+    border: none;
+}
+
+.btn-capture {
+    color: #457191;
+    border: none;
+    font-weight: bold;
+}
+
+.aware-list {
+    padding: 2rem;
+}
+
+li.list-group-item.aware-list-item {
+    border: none;
+}
+
+button[type="button"].btn-primary {
+    background-color: #0F4872;
+}
+
+.list-group li .badge{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 0.75em;
+    -webkit-border-radius:0.75em;
+    margin-right: 1em;
+    font-size: large;
+    font-weight: normal;
+    text-align:center;
+}
+
+.list-group li .badge-success {
+    background-color: #63B200;
+}
+
+.list-group li .badge-progress {
+    background-color: #0F4872;
+}
+
+.list-group li .badge-disable {
+    background-color: #7F9EB5;
+}
+
+.txt--captian{
+    font-size: medium;
+    font-weight: bold;
+}
+

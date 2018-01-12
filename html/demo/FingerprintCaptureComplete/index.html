@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Capture</title>
+</head>
+<body>
+
+<h1>Complete Capture</h1>
+
+<div style="width: 640px; height:480px;  border:1px solid lightgray;">
+    <img id="previewImage" style="max-width:100%; max-height:100%">
+</div>
+
+<p>Status: <span id="status"></span></p>
+<p>Capturing: <span id="prompt"></span></p>
+<button id="markMissing">Mark Missing</button>
+<p>Autocapture Status: <span id="autocaptureStatus"></span></p>
+<p>Preview Score: <span id="previewScore"></span></p>
+
+<button id="reset">Reset</button>
+
+<script src="../Common/lib/es6-promise/es6-promise.js"></script>
+<script src="../Common/lib/biocomponents/aw_fingerprint_capture.js"></script>
+<script src="../Common/lib/biocomponents/aw_fingerprint_set.js"></script>
+<script src="../Common/lib/biocomponents/WebsocketTransport.js"></script>
+<script src="../Common/lib/binary-file-saver/BinaryFileSaver.js"></script>
+<script src="fingerprint_capture_complete.js"></script>
+
+</body>
+</html>

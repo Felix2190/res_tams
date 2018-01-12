@@ -1,0 +1,20 @@
+
+
+	var enviar=function()
+	{
+			var txtUsuario=$("#username").val().trim();
+			var txtPass=$("#pass").val().trim();
+			mostrarEspera(translateReturn("Solicitando acceso..."));
+			xajax_ingresar(txtUsuario,txtPass);
+			return false;
+	};
+	
+	
+	
+	$(document).ready(function()
+	{	
+		$("#btnEnviar").click(enviar);
+		$("#frmLogin").submit(enviar);
+	});
+	 
+

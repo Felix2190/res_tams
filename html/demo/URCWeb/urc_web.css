@@ -1,0 +1,46 @@
+.welcome-actions__cta {
+    margin: 5%;
+    font-size: 2rem;
+    text-align: center;
+    background: linear-gradient(to bottom, #fff 0%, #f3f5f7 84%, #f3f5f7 100%);
+    border: 1px solid #7f9eb5;
+    border-radius: 4px;
+    display: block;
+    padding: 3em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.welcome-actions__cta:hover, .welcome-actions__cta:focus {
+    box-shadow: 0px 5px 20px #5F8EB1;
+}
+
+.welcome-actions__cta svg {
+  fill: #0f4872;
+  max-width: 80px;
+  vertical-align: middle;
+}
+
+.enrollment-complete {
+    display: none;
+}
+
+.container_loadTrans {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    display: none;
+}
+
+.container_enrollPages {
+    display: none;
+}
+
+.footer {
+    position: relative;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+.footer_logo {
+    float: right;
+}

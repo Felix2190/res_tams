@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fingerprint URC|Web</title>
+    <link href="../Common/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="FingerprintComponent/fingerprint_component.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Common/styles/aware_common.css">
+    <link rel="icon" href="../Common/images/aware_logo_with_name.png">
+
+</head>
+
+<title>Fingerprint Capture Demo</title>
+
+<body>
+
+<div class="container">
+
+    <nav class="navbar">
+        <div class="row navbar-upper">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Aware, Inc." src="../Common/images/aware_logo_with_name_white.png">
+                </a>
+            </div>
+            <p class="navbar-text">Biometric Services Platform 8.15.2</p>
+            <p class="navbar-text pull-right">Hello, admin <i class="glyphicon glyphicon-cog"></i></p>
+        </div>
+        <div class="row navbar-lower">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <i class="glyphicon glyphicon-menu-hamburger"></i>Web Enroll
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <!-- Left Panel -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <ol>
+                    <li class="list-group-item aware-list-item"><span
+                            class="badge pull-left badge-progress">2</span><span>Fingerprint Scan</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div id='allPages' class="col-md-9">
+            <div id="fingerprintComponentContainer">
+                <!--fingerprint component UI will be loaded here-->
+            </div>
+        </div>
+        <button id="saveButton" type="button" class="pull-right btn btn-primary">Save</button>
+    </div>
+</div>
+
+<script src="../Common/lib/jquery/jquery.min.js"></script>
+<script src="../Common/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../Common/lib/biocomponents/aw_fingerprint_capture.js"></script>
+<script src="../Common/lib/biocomponents/aw_fingerprint_set.js"></script>
+<script src="../Common/lib/biocomponents/ImpressionInfo.js"></script>
+<script src="../Common/lib/biocomponents/WebsocketTransport.js"></script>
+<script src="FingerprintComponent/autocapture_strings.js"></script>
+<script src="FingerprintComponent/set_controller.js"></script>
+<script src="FingerprintComponent/fingerprint_component.js"></script>
+
+
+<script>
+    "use strict";
+    $(document).ready(function () {
+        $('#fingerprintComponentContainer').load('fingerprintComponent/fingerprint_component.html',
+            function () {
+            
+                // Fix path
+                $(".shutter-svg").attr("src","../Common/images/shutter.svg");
+                $(".dial-svg").attr("src","../Common/images/dial.svg");
+
+                var websocket = new WebSocket("ws://localhost:2080");
+                websocket.onopen = function (event) {
+                    var transport = createWebsocketTransport(websocket);
+                    FingerprintComponent.init({
+                        transport:transport,
+                        cancelCallback: function() { window.location="../index.html";}
+                    }).then(function(){
+                        FingerprintComponent.activate();
+                    });
+                };
+            })
+    });
+</script>
+
+</body>
+</html>

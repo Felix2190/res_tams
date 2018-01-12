@@ -1,0 +1,134 @@
+<?php
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#---------------------------------------Archivos necesarios Require Include---------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+	require_once(LIB_CONEXION);
+	require_once FOLDER_MODEL_WS . "ws.class.CallHistoryService.callsListDetailed.inc.php";
+
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#--------------------------------------------Inicializacion de control--------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#----------------------------------------------------Funciones----------------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+	function TildesHtml($cadena)
+	{
+		return str_replace(array("á","é","í","ó","ú","ñ","Á","É","Í","Ó","Ú","Ñ"),
+				array("&aacute;","&eacute;","&iacute;","&oacute;","&uacute;","&ntilde;",
+						"&Aacute;","&Eacute;","&Iacute;","&Oacute;","&Uacute;","&Ntilde;"), $cadena);
+	}
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#---------------------------------------------------Seccion AJAX--------------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+	$xajax=new xajax();
+
+	
+
+	$xajax->processRequest();
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#-------------------------------------------Inicializacion de variables-------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+	
+	
+	
+	$fecha=getdate();
+	$a=$fecha['year'];
+	$m=$fecha['mon']<0?"0" . $fecha['mon']:$fecha['mon'];
+	$diaActual=$fecha['mday']<0?"0" . $fecha['mday']:$fecha['mday'];
+	$cantidadDias=$fecha["mday"]-1;
+	
+	
+	$strFilas='';
+	
+	$query="SELECT COUNT(*) Total, UPPER(E.Descripcion) Descripcion , UPPER(U.nombre) nombre
+			FROM `turno` AS T 
+			INNER JOIN `etapa` AS E ON E.idEtapa=T.idEtapa 
+			LEFT JOIN persona as P ON P.idPersona=T.idPersona 
+			LEFT JOIN tipolicencia AS tp ON tp.idTipoLicencia=T.idTipoLicencia 
+			LEFT JOIN ubicacion as U ON U.idUbicacion=T.idUbicacion 
+			WHERE 1 GROUP BY E.Descripcion ORDER BY 1 DESC ";
+	
+	/**SELECT
+	(SELECT COUNT(*) AS 5min
+			FROM `turno`
+			WHERE  TIMESTAMPDIFF(MINUTE,fechahora,now()) BETWEEN 0 AND 15) AS Hasta15,
+			(SELECT COUNT(*) AS 10min
+					FROM `turno`
+					WHERE  TIMESTAMPDIFF(MINUTE,fechahora,now()) BETWEEN 16 AND 30) AS Hasta30,
+					(SELECT COUNT(*) AS 20min
+							FROM `turno`
+							WHERE  TIMESTAMPDIFF(MINUTE,fechahora,now()) BETWEEN 31 AND 45) AS Hast45,
+							(SELECT COUNT(*) AS 30min
+									FROM `turno`
+									WHERE  TIMESTAMPDIFF(MINUTE,fechahora,now()) >=46) AS Mas45***/
+	$result=mysqli_query($dbLink, $query);
+	if($result->num_rows == 0)
+		$strFilas.='<tr><td colspan="3"> Sin turnos</td></tr>';
+	else {
+		while($r=mysqli_fetch_assoc($result))
+		{
+			
+			$strFilas.='<tr>
+								<td>' . $r['Total'] . '</td>
+								<td>' . TildesHtml( $r['Descripcion']) . '</td>
+								<td>' . $r['nombre'] . '</td>
+								
+								
+							</tr>';
+		}
+	}		
+	
+	$strTiempo='';
+	$query="SELECT (SELECT COUNT(*) AS 5min FROM `turno` WHERE TIMESTAMPDIFF(MINUTE,fechahora,now()) BETWEEN 0 AND 15) AS Hasta15,
+			(SELECT COUNT(*) AS 10min FROM `turno` WHERE TIMESTAMPDIFF(MINUTE,fechahora,now()) BETWEEN 16 AND 30) AS Hasta30, 
+			(SELECT COUNT(*) AS 20min FROM `turno` WHERE TIMESTAMPDIFF(MINUTE,fechahora,now()) BETWEEN 31 AND 45) AS Hast45,
+			(SELECT COUNT(*) AS 30min FROM `turno` WHERE TIMESTAMPDIFF(MINUTE,fechahora,now()) >=46) AS Mas45";
+	$result=mysqli_query($dbLink, $query);
+	if($result->num_rows == 0)
+		$strTiempo.='<tr><td colspan="4"> Sin turnos</td></tr>';
+	else{
+		while($r=mysqli_fetch_assoc($result))
+		{
+			
+				$strTiempo.='<tr>
+								<td>' . $r['Hasta15'] . '</td>
+								<td>' . $r['Hasta30'] . '</td>
+								<td>' . $r['Hast45'] . '</td>
+								<td>' . $r['Mas45'] . '</td>
+					
+							</tr>';
+		}
+	}
+	#-----------------------------------------------------------------------------------------------------------------#
+	#------------------------------------- JavaScript array initialization     ---------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+	$_JAVASCRIPT_OUT="";
+
+	#-----------------------------------------------------------------------------------------------------------------#
+	#---------------------------------------------Translate on JavaScript---------------------------------------------#
+	#-----------------------------------------------------------------------------------------------------------------#
+
+
+	if(!isset($_JAVASCRIPT_OUT))
+		$_JAVASCRIPT_OUT="";
+
+

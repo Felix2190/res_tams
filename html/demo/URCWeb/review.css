@@ -1,0 +1,72 @@
+/* Copyright (C) 2017 Aware, Inc - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ */
+
+.review__biographicInfo{
+	margin-top: -20px;
+	margin-left: 40px;
+}
+
+.review__fingerprint-container {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.review__fingerprint-row {
+    flex-basis: 10em;
+    flex-grow: 1;
+}
+
+.review-page__left-prints {
+    list-style: none;
+}
+
+.review-page__right-prints {
+    list-style: none;
+}
+
+.review__thumbnail {
+    display: block;
+    cursor:pointer;
+}
+
+.review__thumbnail-span {
+    width: 102px;    
+    height: 85px;
+}
+
+.review__thumbnail-image {  
+    max-width: 102px;    
+    height: 85px;
+    display:inline-block
+}
+
+.review__thumbnail-title {
+    display: block;
+}
+
+.review__thumbnail-scores {
+    display: block;
+}
+
+.review-page__plains {
+    list-style: none;
+}
+
+.review__score {
+    margin-right: 8px;
+}
+
+.review__score:last-child {
+    margin-right: 0px;
+}
+
+.review__print-preview {
+	width: 650px; 
+	height: 650px; 
+	border-style: solid; 
+	border-width: medium;
+}

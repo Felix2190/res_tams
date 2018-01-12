@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>FingerprintCapture</title>
+</head>
+<body>
+
+<h1>Simple Fingerprint Capture</h1>
+
+<div style="width: 640px; height:480px;  border:1px solid lightgray;">
+    <img id="previewImage" style="max-width:100%; max-height:100%">
+</div>
+
+<p id="status"></p>
+<p id="autocaptureStatus"></p>
+
+<script src="../Common/lib/es6-promise/es6-promise.js"></script>
+<script src="../Common/lib/biocomponents/aw_fingerprint_capture.js"></script>
+<script src="../Common/lib/biocomponents/WebsocketTransport.js"></script>
+<script src="../Common/lib/binary-file-saver/BinaryFileSaver.js"></script>
+<script src="fingerprint_capture_simple.js"></script>
+
+</body>
+</html>
